@@ -1,0 +1,50 @@
+2025-10-23 17:05:11 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-23 17:05:11 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-23 17:05:11 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-23 17:05:36 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-23 17:05:36 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-23 17:05:36 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-23 17:05:36 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-23 17:06:26 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-23 17:06:26 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-23 17:06:26 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-23 17:06:26 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-23 17:07:17 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-23 17:07:17 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-23 17:07:17 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-23 17:07:17 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-23 17:07:48 - backend.main - DEBUG - read_root:39 - Health check endpoint called
+2025-10-23 17:15:22 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-23 17:15:22 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-23 17:15:22 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-23 17:15:22 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-23 17:16:13 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-23 17:16:13 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-23 17:16:13 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-23 17:16:13 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-23 17:16:39 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-23 17:16:39 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-23 17:16:39 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-23 17:16:39 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-23 17:17:13 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-23 17:17:13 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-23 17:17:13 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-23 17:17:13 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-23 17:19:17 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-23 17:19:17 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-23 17:19:17 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-23 17:19:17 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-23 17:24:14 - backend.main - INFO - legacy_endpoint:49 - Legacy /cvjob-compare endpoint called
+2025-10-23 17:24:14 - backend.main - DEBUG - legacy_endpoint:50 - Request - Job text: 1058 chars, Resume: 1907 chars
+2025-10-23 17:24:14 - backend.services.ai_service - INFO - compare_skills:62 - Starting skills comparison
+2025-10-23 17:24:14 - backend.services.ai_service - INFO - extract_skills:21 - Extracting job skills from text (1058 chars)
+2025-10-23 17:24:14 - backend.services.ai_service - DEBUG - extract_skills:34 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-23 17:24:22 - backend.services.ai_service - INFO - extract_skills:48 - Successfully extracted 21 skills from job
+2025-10-23 17:24:22 - backend.services.ai_service - DEBUG - extract_skills:49 - Skills: ['machine learning', 'rest apis', 'vector databases', 'transformers', 'pandas']...
+2025-10-23 17:24:22 - backend.services.ai_service - INFO - extract_skills:21 - Extracting resume skills from text (1907 chars)
+2025-10-23 17:24:22 - backend.services.ai_service - DEBUG - extract_skills:34 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-23 17:24:25 - backend.services.ai_service - INFO - extract_skills:48 - Successfully extracted 21 skills from resume
+2025-10-23 17:24:25 - backend.services.ai_service - DEBUG - extract_skills:49 - Skills: ['ci/cd concepts', 'aws basics', 'rest apis', 'vector dbs', 'transformers']...
+2025-10-23 17:24:25 - backend.services.ai_service - INFO - compare_skills:71 - Comparison complete - Matched: 12, Missing: 9, Extra: 9
+2025-10-23 17:24:25 - backend.main - INFO - legacy_endpoint:54 - Match calculated - Semantic: 77.47%, Skills: 57.14%
+2025-10-23 17:24:25 - backend.main - DEBUG - legacy_endpoint:55 - Matched skills: 12, Missing: 9
