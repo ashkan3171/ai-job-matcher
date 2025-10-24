@@ -487,3 +487,75 @@ openai.BadRequestError: Error code: 400 - {'error': {'message': "Unsupported par
 2025-10-24 16:34:50 - backend.main - INFO - <module>:16 - ==================================================
 2025-10-24 16:34:50 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
 2025-10-24 16:34:50 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:35:13 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:35:13 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:35:13 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:35:13 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:35:13 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:35:32 - backend.main - INFO - legacy_endpoint:52 - Legacy /cvjob-compare endpoint called
+2025-10-24 16:35:32 - backend.main - DEBUG - legacy_endpoint:53 - Request - Job text: 2070 chars, Resume: 4846 chars
+2025-10-24 16:35:32 - backend.services.matcher_service - INFO - calculate_job_match:15 - Starting job match calculation
+2025-10-24 16:35:32 - backend.services.matcher_service - DEBUG - calculate_job_match:16 - Input lengths - Job: 2070 chars, Resume: 4846 chars
+2025-10-24 16:35:32 - backend.services.matcher_service - DEBUG - calculate_job_match:20 - Encoding job description to embedding
+2025-10-24 16:35:32 - backend.services.matcher_service - DEBUG - calculate_job_match:23 - Encoding resume to embedding
+2025-10-24 16:35:32 - backend.services.matcher_service - DEBUG - calculate_job_match:26 - Calculating cosine similarity
+2025-10-24 16:35:32 - backend.services.matcher_service - INFO - calculate_job_match:30 - Semantic similarity calculated: 76.12%
+2025-10-24 16:35:32 - backend.services.matcher_service - DEBUG - calculate_job_match:33 - Starting skills comparison
+2025-10-24 16:35:32 - backend.services.ai_service - INFO - compare_skills:108 - Starting skills comparison
+2025-10-24 16:35:32 - backend.services.ai_service - INFO - extract_skills:22 - Extracting job skills from text (2070 chars)
+2025-10-24 16:35:32 - backend.services.ai_service - DEBUG - extract_skills:80 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-24 16:35:37 - backend.services.ai_service - INFO - extract_skills:94 - Successfully extracted 49 skills from job
+2025-10-24 16:35:37 - backend.services.ai_service - DEBUG - extract_skills:95 - Skills: ['postgresql', 'ec2', 'pytest', 'fintech', 'sqs']...
+2025-10-24 16:35:37 - backend.services.ai_service - INFO - extract_skills:22 - Extracting resume skills from text (4846 chars)
+2025-10-24 16:35:37 - backend.services.ai_service - DEBUG - extract_skills:80 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-24 16:35:42 - backend.services.ai_service - INFO - extract_skills:94 - Successfully extracted 70 skills from resume
+2025-10-24 16:35:42 - backend.services.ai_service - DEBUG - extract_skills:95 - Skills: ['websockets', 'postgresql', 'linux', 'ec2', 'pytest']...
+2025-10-24 16:35:42 - backend.services.ai_service - INFO - compare_skills:155 - Comparison complete - Matched: 30, Missing: 19, Extra: 40
+2025-10-24 16:35:42 - backend.services.matcher_service - INFO - calculate_job_match:44 - Match calculation complete - Semantic: 76.12%, Skills: 61.22%
+2025-10-24 16:35:42 - backend.services.matcher_service - DEBUG - calculate_job_match:49 - Skills breakdown - Matched: 30, Missing: 19, Extra: 40
+2025-10-24 16:35:42 - backend.main - INFO - legacy_endpoint:57 - Match calculated - Semantic: 76.12%, Skills: 61.22%
+2025-10-24 16:35:42 - backend.main - DEBUG - legacy_endpoint:58 - Matched skills: 30, Missing: 19
+2025-10-24 16:39:15 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:39:15 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:39:15 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:39:15 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:39:15 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:41:45 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:41:45 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:41:45 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:41:45 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:41:45 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:41:56 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:41:56 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:41:56 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:41:56 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:41:56 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:41:58 - backend.main - INFO - legacy_endpoint:52 - Legacy /cvjob-compare endpoint called
+2025-10-24 16:41:58 - backend.main - DEBUG - legacy_endpoint:53 - Request - Job text: 2070 chars, Resume: 4846 chars
+2025-10-24 16:41:58 - backend.services.matcher_service - INFO - calculate_job_match:15 - Starting job match calculation
+2025-10-24 16:41:58 - backend.services.matcher_service - DEBUG - calculate_job_match:16 - Input lengths - Job: 2070 chars, Resume: 4846 chars
+2025-10-24 16:41:58 - backend.services.matcher_service - DEBUG - calculate_job_match:20 - Encoding job description to embedding
+2025-10-24 16:41:58 - backend.services.matcher_service - DEBUG - calculate_job_match:23 - Encoding resume to embedding
+2025-10-24 16:41:58 - backend.services.matcher_service - DEBUG - calculate_job_match:26 - Calculating cosine similarity
+2025-10-24 16:41:58 - backend.services.matcher_service - INFO - calculate_job_match:30 - Semantic similarity calculated: 76.12%
+2025-10-24 16:41:58 - backend.services.matcher_service - DEBUG - calculate_job_match:33 - Starting skills comparison
+2025-10-24 16:41:58 - backend.services.ai_service - INFO - compare_skills:108 - Starting skills comparison
+2025-10-24 16:41:58 - backend.services.ai_service - INFO - extract_skills:22 - Extracting job skills from text (2070 chars)
+2025-10-24 16:41:58 - backend.services.ai_service - DEBUG - extract_skills:80 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-24 16:42:01 - backend.services.ai_service - INFO - extract_skills:94 - Successfully extracted 47 skills from job
+2025-10-24 16:42:01 - backend.services.ai_service - DEBUG - extract_skills:95 - Skills: ['postgresql', 'container orchestration', 'celery', 'query optimization', 'python']...
+2025-10-24 16:42:01 - backend.services.ai_service - INFO - extract_skills:22 - Extracting resume skills from text (4846 chars)
+2025-10-24 16:42:01 - backend.services.ai_service - DEBUG - extract_skills:80 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-24 16:42:06 - backend.services.ai_service - INFO - extract_skills:94 - Successfully extracted 61 skills from resume
+2025-10-24 16:42:06 - backend.services.ai_service - DEBUG - extract_skills:95 - Skills: ['postgresql', 'celery', 'code reviews', 'query optimization', 'pytest']...
+2025-10-24 16:42:06 - backend.services.ai_service - INFO - compare_skills:157 - Skills comparison complete - Matched: 27/47 (57.45%)
+2025-10-24 16:42:06 - backend.services.ai_service - DEBUG - compare_skills:158 - Exact matches: 27, Fuzzy matches: 0, Missing: 20, Extra: 34
+2025-10-24 16:42:06 - backend.services.matcher_service - INFO - calculate_job_match:44 - Match calculation complete - Semantic: 76.12%, Skills: 57.45%
+2025-10-24 16:42:06 - backend.services.matcher_service - DEBUG - calculate_job_match:49 - Skills breakdown - Matched: 27, Missing: 20, Extra: 34
+2025-10-24 16:42:06 - backend.main - INFO - legacy_endpoint:57 - Match calculated - Semantic: 76.12%, Skills: 57.45%
+2025-10-24 16:42:06 - backend.main - DEBUG - legacy_endpoint:58 - Matched skills: 27, Missing: 20
+2025-10-24 16:42:43 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:42:43 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:42:43 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:42:43 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:42:43 - backend.main - INFO - <module>:37 - API routes loaded

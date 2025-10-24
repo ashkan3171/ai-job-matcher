@@ -116,24 +116,21 @@ def compare_skills(job_text: str, resume_text: str) -> dict:
     fuzzy_matched_resume = set()
     fuzzy_matched_job = set()
     
-    # For each job skill, find best match in resume skills
     for job_skill in job_skills:
         if job_skill in matched_skills:
-            continue  # Already matched exactly
+            continue  
         
         best_match = None
         best_score = 0
         
         for resume_skill in matched_skills:
             if resume_skill in matched_skills or resume_skill in fuzzy_matched_resume:
-                continue  # Already matched
-            
-            # Calculate similarity
+                continue  
+
             score = fuzz.ratio(job_skill, resume_skill)
             
-            # Also check if one contains the other (substring match)
             if job_skill in resume_skill or resume_skill in job_skill:
-                score = max(score, 85)  # Boost score for substring matches
+                score = max(score, 85) 
             
             if score > best_score:
                 best_score = score
@@ -149,12 +146,13 @@ def compare_skills(job_text: str, resume_text: str) -> dict:
     all_matched = matched_skills.union(fuzzy_matched_job)
     matched_job_count = len(all_matched)
 
-    missing_skills = job_skills - resume_skills
-    extra_skills = resume_skills - job_skills
+    missing_skills = job_skills - all_matched
+    extra_skills = resume_skills - matched_skills - fuzzy_matched_resume
+
+    percentage = round(matched_job_count / len(job_skills) * 100, 2) if job_skills else 0
     
-    logger.info(f"Comparison complete - Matched: {len(matched_skills)}, Missing: {len(missing_skills)}, Extra: {len(extra_skills)}")
-    
-    percentage = round(len(matched_skills) / len(job_skills) * 100, 2) if job_skills else 0
+    logger.info(f"Skills comparison complete - Matched: {matched_job_count}/{len(job_skills)} ({percentage}%)")
+    logger.debug(f"Exact matches: {len(matched_skills)}, Fuzzy matches: {len(fuzzy_matched_job)}, Missing: {len(missing_skills)}, Extra: {len(extra_skills)}")
     
     return {
         "matched_skills": sorted(list(matched_skills)),
