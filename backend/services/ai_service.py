@@ -240,7 +240,7 @@ def compare_skills(job_text: str, resume_text: str) -> dict:
         if best_score >= 80:
             fuzzy_matched_resume.add(best_match)
             fuzzy_matched_job.add(job_skill)
-            logger.debug(f"Fuzzy match: '{job_skill}' ≈ '{best_match}' (score: {best_score})")
+            logger.debug(f"Fuzzy match: '{job_skill}' ~= '{best_match}' (score: {best_score})")
     
     # Combine exact and fuzzy matches (use original skill names from job)
     all_matched_job_skills = set()

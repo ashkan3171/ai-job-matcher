@@ -579,3 +579,104 @@ openai.BadRequestError: Error code: 400 - {'error': {'message': "Unsupported par
 2025-10-24 16:46:47 - backend.main - INFO - <module>:16 - ==================================================
 2025-10-24 16:46:47 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
 2025-10-24 16:46:47 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:47:15 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:47:15 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:47:15 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:47:15 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:47:15 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:48:10 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:48:10 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:48:10 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:48:10 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:48:10 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:48:15 - backend.main - INFO - legacy_endpoint:52 - Legacy /cvjob-compare endpoint called
+2025-10-24 16:48:15 - backend.main - DEBUG - legacy_endpoint:53 - Request - Job text: 2070 chars, Resume: 4846 chars
+2025-10-24 16:48:15 - backend.services.matcher_service - INFO - calculate_job_match:15 - Starting job match calculation
+2025-10-24 16:48:15 - backend.services.matcher_service - DEBUG - calculate_job_match:16 - Input lengths - Job: 2070 chars, Resume: 4846 chars
+2025-10-24 16:48:15 - backend.services.matcher_service - DEBUG - calculate_job_match:20 - Encoding job description to embedding
+2025-10-24 16:48:15 - backend.services.matcher_service - DEBUG - calculate_job_match:23 - Encoding resume to embedding
+2025-10-24 16:48:15 - backend.services.matcher_service - DEBUG - calculate_job_match:26 - Calculating cosine similarity
+2025-10-24 16:48:15 - backend.services.matcher_service - INFO - calculate_job_match:30 - Semantic similarity calculated: 76.12%
+2025-10-24 16:48:15 - backend.services.matcher_service - DEBUG - calculate_job_match:33 - Starting skills comparison
+2025-10-24 16:48:15 - backend.services.ai_service - INFO - compare_skills:195 - Starting skills comparison with fuzzy matching and synonyms
+2025-10-24 16:48:15 - backend.services.ai_service - INFO - extract_skills:109 - Extracting job skills from text (2070 chars)
+2025-10-24 16:48:15 - backend.services.ai_service - DEBUG - extract_skills:167 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-24 16:48:20 - backend.services.ai_service - INFO - extract_skills:181 - Successfully extracted 47 skills from job
+2025-10-24 16:48:20 - backend.services.ai_service - DEBUG - extract_skills:182 - Skills: ['scrum', 'pytest', 'aws', 'microservices', 'deployment processes']...
+2025-10-24 16:48:20 - backend.services.ai_service - INFO - extract_skills:109 - Extracting resume skills from text (4846 chars)
+2025-10-24 16:48:20 - backend.services.ai_service - DEBUG - extract_skills:167 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-24 16:48:26 - backend.services.ai_service - INFO - extract_skills:181 - Successfully extracted 74 skills from resume
+2025-10-24 16:48:26 - backend.services.ai_service - DEBUG - extract_skills:182 - Skills: ['xgboost', 'fraud detection', 'system design', 'scrum', 'pytest']...
+2025-10-24 16:48:26 - backend.services.ai_service - DEBUG - compare_skills:200 - Job skills extracted: 47
+2025-10-24 16:48:26 - backend.services.ai_service - DEBUG - compare_skills:201 - Resume skills extracted: 74
+2025-10-24 16:48:26 - backend.services.ai_service - DEBUG - compare_skills:207 - After synonym expansion - Job: 109, Resume: 129
+2025-10-24 16:48:27 - backend.services.ai_service - DEBUG - compare_skills:258 - Synonym match: 'tdd' matched via 'testing'
+2025-10-24 16:48:27 - backend.services.ai_service - INFO - compare_skills:271 - Skills comparison complete - Matched: 39/47 (82.98%)
+2025-10-24 16:48:27 - backend.services.ai_service - DEBUG - compare_skills:272 - Exact: 86, Fuzzy: 4, Missing: 8
+2025-10-24 16:48:27 - backend.services.matcher_service - INFO - calculate_job_match:44 - Match calculation complete - Semantic: 76.12%, Skills: 82.98%
+2025-10-24 16:48:27 - backend.services.matcher_service - DEBUG - calculate_job_match:49 - Skills breakdown - Matched: 39, Missing: 8, Extra: 74
+2025-10-24 16:48:27 - backend.main - INFO - legacy_endpoint:57 - Match calculated - Semantic: 76.12%, Skills: 82.98%
+2025-10-24 16:48:27 - backend.main - DEBUG - legacy_endpoint:58 - Matched skills: 39, Missing: 8
+2025-10-24 16:55:58 - backend.main - INFO - legacy_endpoint:52 - Legacy /cvjob-compare endpoint called
+2025-10-24 16:55:58 - backend.main - DEBUG - legacy_endpoint:53 - Request - Job text: 2070 chars, Resume: 4846 chars
+2025-10-24 16:55:58 - backend.services.matcher_service - INFO - calculate_job_match:15 - Starting job match calculation
+2025-10-24 16:55:58 - backend.services.matcher_service - DEBUG - calculate_job_match:16 - Input lengths - Job: 2070 chars, Resume: 4846 chars
+2025-10-24 16:55:58 - backend.services.matcher_service - DEBUG - calculate_job_match:20 - Encoding job description to embedding
+2025-10-24 16:55:58 - backend.services.matcher_service - DEBUG - calculate_job_match:23 - Encoding resume to embedding
+2025-10-24 16:55:58 - backend.services.matcher_service - DEBUG - calculate_job_match:26 - Calculating cosine similarity
+2025-10-24 16:55:58 - backend.services.matcher_service - INFO - calculate_job_match:30 - Semantic similarity calculated: 76.12%
+2025-10-24 16:55:58 - backend.services.matcher_service - DEBUG - calculate_job_match:33 - Starting skills comparison
+2025-10-24 16:55:58 - backend.services.ai_service - INFO - compare_skills:195 - Starting skills comparison with fuzzy matching and synonyms
+2025-10-24 16:55:58 - backend.services.ai_service - INFO - extract_skills:109 - Extracting job skills from text (2070 chars)
+2025-10-24 16:55:58 - backend.services.ai_service - DEBUG - extract_skills:167 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-24 16:56:03 - backend.services.ai_service - INFO - extract_skills:181 - Successfully extracted 52 skills from job
+2025-10-24 16:56:03 - backend.services.ai_service - DEBUG - extract_skills:182 - Skills: ['scrum', 'pytest', 'aws', 'microservices', 'grafana']...
+2025-10-24 16:56:03 - backend.services.ai_service - INFO - extract_skills:109 - Extracting resume skills from text (4846 chars)
+2025-10-24 16:56:03 - backend.services.ai_service - DEBUG - extract_skills:167 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-24 16:56:08 - backend.services.ai_service - INFO - extract_skills:181 - Successfully extracted 71 skills from resume
+2025-10-24 16:56:08 - backend.services.ai_service - DEBUG - extract_skills:182 - Skills: ['xgboost', 'semantic search', 'fraud detection', 'system design', 'scrum']...
+2025-10-24 16:56:08 - backend.services.ai_service - DEBUG - compare_skills:200 - Job skills extracted: 52
+2025-10-24 16:56:08 - backend.services.ai_service - DEBUG - compare_skills:201 - Resume skills extracted: 71
+2025-10-24 16:56:08 - backend.services.ai_service - DEBUG - compare_skills:207 - After synonym expansion - Job: 112, Resume: 126
+2025-10-24 16:56:08 - backend.services.ai_service - DEBUG - compare_skills:258 - Synonym match: 'tdd' matched via 'testing'
+2025-10-24 16:56:08 - backend.services.ai_service - DEBUG - compare_skills:258 - Synonym match: 'comprehensive tests' matched via 'automated testing'
+2025-10-24 16:56:08 - backend.services.ai_service - INFO - compare_skills:271 - Skills comparison complete - Matched: 42/52 (80.77%)
+2025-10-24 16:56:08 - backend.services.ai_service - DEBUG - compare_skills:272 - Exact: 89, Fuzzy: 2, Missing: 10
+2025-10-24 16:56:08 - backend.services.matcher_service - INFO - calculate_job_match:44 - Match calculation complete - Semantic: 76.12%, Skills: 80.77%
+2025-10-24 16:56:08 - backend.services.matcher_service - DEBUG - calculate_job_match:49 - Skills breakdown - Matched: 42, Missing: 10, Extra: 71
+2025-10-24 16:56:08 - backend.main - INFO - legacy_endpoint:57 - Match calculated - Semantic: 76.12%, Skills: 80.77%
+2025-10-24 16:56:08 - backend.main - DEBUG - legacy_endpoint:58 - Matched skills: 42, Missing: 10
+2025-10-24 16:58:35 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:58:35 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:58:35 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:58:35 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:58:35 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:58:43 - backend.main - INFO - legacy_endpoint:52 - Legacy /cvjob-compare endpoint called
+2025-10-24 16:58:43 - backend.main - DEBUG - legacy_endpoint:53 - Request - Job text: 2070 chars, Resume: 4846 chars
+2025-10-24 16:58:43 - backend.services.matcher_service - INFO - calculate_job_match:15 - Starting job match calculation
+2025-10-24 16:58:43 - backend.services.matcher_service - DEBUG - calculate_job_match:16 - Input lengths - Job: 2070 chars, Resume: 4846 chars
+2025-10-24 16:58:43 - backend.services.matcher_service - DEBUG - calculate_job_match:20 - Encoding job description to embedding
+2025-10-24 16:58:44 - backend.services.matcher_service - DEBUG - calculate_job_match:23 - Encoding resume to embedding
+2025-10-24 16:58:44 - backend.services.matcher_service - DEBUG - calculate_job_match:26 - Calculating cosine similarity
+2025-10-24 16:58:44 - backend.services.matcher_service - INFO - calculate_job_match:30 - Semantic similarity calculated: 76.12%
+2025-10-24 16:58:44 - backend.services.matcher_service - DEBUG - calculate_job_match:33 - Starting skills comparison
+2025-10-24 16:58:44 - backend.services.ai_service - INFO - compare_skills:195 - Starting skills comparison with fuzzy matching and synonyms
+2025-10-24 16:58:44 - backend.services.ai_service - INFO - extract_skills:109 - Extracting job skills from text (2070 chars)
+2025-10-24 16:58:44 - backend.services.ai_service - DEBUG - extract_skills:167 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-24 16:58:49 - backend.services.ai_service - INFO - extract_skills:181 - Successfully extracted 49 skills from job
+2025-10-24 16:58:49 - backend.services.ai_service - DEBUG - extract_skills:182 - Skills: ['aws', 'agile', 'django', 'gitlab', 'restful apis']...
+2025-10-24 16:58:49 - backend.services.ai_service - INFO - extract_skills:109 - Extracting resume skills from text (4846 chars)
+2025-10-24 16:58:49 - backend.services.ai_service - DEBUG - extract_skills:167 - Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)
+2025-10-24 16:58:53 - backend.services.ai_service - INFO - extract_skills:181 - Successfully extracted 67 skills from resume
+2025-10-24 16:58:53 - backend.services.ai_service - DEBUG - extract_skills:182 - Skills: ['aws', 'agile', 'django', 'skills: python', 'gitlab']...
+2025-10-24 16:58:53 - backend.services.ai_service - DEBUG - compare_skills:200 - Job skills extracted: 49
+2025-10-24 16:58:53 - backend.services.ai_service - DEBUG - compare_skills:201 - Resume skills extracted: 67
+2025-10-24 16:58:53 - backend.services.ai_service - DEBUG - compare_skills:207 - After synonym expansion - Job: 110, Resume: 120
+2025-10-24 16:58:53 - backend.services.ai_service - DEBUG - compare_skills:258 - Synonym match: 'tdd' matched via 'testing'
+2025-10-24 16:58:53 - backend.services.ai_service - DEBUG - compare_skills:258 - Synonym match: 'high-performance apis' matched via 'performance optimization'
+2025-10-24 16:58:53 - backend.services.ai_service - INFO - compare_skills:271 - Skills comparison complete - Matched: 40/49 (81.63%)
+2025-10-24 16:58:53 - backend.services.ai_service - DEBUG - compare_skills:272 - Exact: 84, Fuzzy: 3, Missing: 9
+2025-10-24 16:58:53 - backend.services.matcher_service - INFO - calculate_job_match:44 - Match calculation complete - Semantic: 76.12%, Skills: 81.63%
+2025-10-24 16:58:53 - backend.services.matcher_service - DEBUG - calculate_job_match:49 - Skills breakdown - Matched: 40, Missing: 9, Extra: 67
+2025-10-24 16:58:53 - backend.main - INFO - legacy_endpoint:57 - Match calculated - Semantic: 76.12%, Skills: 81.63%
+2025-10-24 16:58:53 - backend.main - DEBUG - legacy_endpoint:58 - Matched skills: 40, Missing: 9
