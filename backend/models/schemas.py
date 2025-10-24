@@ -13,3 +13,10 @@ class JobMatchResponse(BaseModel):
     missing_skills: list[str]
     extra_skills: list[str]
     status: str
+
+class PDFUploadResponse(BaseModel):
+    """Response after uploading PDF"""
+    text: str
+    page_count: int
+    char_count: int
+    status: str

@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from backend.core.logging_config import setup_logging
 from backend.core.config import settings
 from backend.api.routes import matcher
+from backend.api.routes import upload
 from backend.models.schemas import JobMatchRequest
 from backend.services.matcher_service import calculate_job_match
 import logging
-from backend.core.logging_config import setup_logging
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -32,10 +33,12 @@ logger.info(f"CORS configured for: {settings.frontend_url}")
 
 # Include routers
 app.include_router(matcher.router)
+app.include_router(upload.router)
+logger.info("API routes loaded")
 
 # Health check
 @app.get("/health")
-def read_root():
+def read_health():
     logger.debug("Health check endpoint called")
     return {"message": f"{settings.app_name} is running"}
 

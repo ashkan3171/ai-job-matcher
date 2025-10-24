@@ -5,6 +5,56 @@ function App() {
   const [resumeText, setResumeText] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [uploadingPDF, setUploadingPDF] = useState(false); 
+
+  // Handle PDF upload
+  const handlePDFUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (file.type !== 'application/pdf') {
+      alert('Please upload a PDF file');
+      return;
+    }
+
+    // Validate file size (10MB max)
+    if (file.size > 10 * 1024 * 1024) {
+      alert('File size must be less than 10MB');
+      return;
+    }
+
+    setUploadingPDF(true);
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('http://localhost:8000/api/upload-pdf', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+
+      const data = await response.json();
+
+      // Fill the resume textarea with extracted text
+      setResumeText(data.text);
+      
+      alert(`✅ PDF uploaded successfully!\n${data.page_count} page(s), ${data.char_count} characters extracted.`);
+
+    } catch (error) {
+      console.error('PDF upload error:', error);
+      alert('❌ Failed to upload PDF. Please try again or paste text manually.');
+    } finally {
+      setUploadingPDF(false);
+      // Reset file input
+      event.target.value = '';
+    }
+  };
 
   //Function to call  backend
   const handleCalculate = async () => { 
@@ -69,20 +119,37 @@ function App() {
               onChange={(e) => setJobText(e.target.value)}
             />
           </div>
-
           {/* Resume */}
           <div className="mb-6">
             <label className="block text-gray-700 font-semibold mb-2">
               Your Resume
             </label>
+            {/* PDF Upload Button */}
+            <div className="mb-3">
+              <label className="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg cursor-pointer transition duration-200">
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                {uploadingPDF ? 'Uploading...' : 'Upload PDF Resume'}
+                <input
+                  type="file"
+                  className="hidden"
+                  accept=".pdf"
+                  onChange={handlePDFUpload}
+                  disabled={uploadingPDF}
+                />
+              </label>
+              <span className="ml-3 text-sm text-gray-500">or paste text below</span>
+            </div>
+
+            {/* Resume Textarea */}
             <textarea
               className="w-full h-40 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Paste your resume here..."
+              placeholder="Paste your resume here or upload PDF above..."
               value={resumeText}
               onChange={(e) => setResumeText(e.target.value)}
             />
           </div>
-
           {/* Button */}
           <button 
             onClick={handleCalculate}

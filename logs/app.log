@@ -48,3 +48,95 @@
 2025-10-23 17:24:25 - backend.services.ai_service - INFO - compare_skills:71 - Comparison complete - Matched: 12, Missing: 9, Extra: 9
 2025-10-23 17:24:25 - backend.main - INFO - legacy_endpoint:54 - Match calculated - Semantic: 77.47%, Skills: 57.14%
 2025-10-23 17:24:25 - backend.main - DEBUG - legacy_endpoint:55 - Matched skills: 12, Missing: 9
+2025-10-24 08:37:06 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 08:37:06 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 08:37:06 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 08:37:06 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 08:37:38 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 08:37:38 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 08:37:38 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 08:37:38 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 09:05:16 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 09:05:16 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:05:16 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 09:05:16 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 09:05:38 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 09:05:38 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:05:38 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 09:05:38 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 09:08:06 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 09:08:06 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:08:06 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 09:08:06 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 09:08:14 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 09:08:14 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:08:14 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 09:08:14 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 09:12:40 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 09:12:40 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:12:40 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 09:12:40 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 09:12:51 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 09:12:51 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:12:51 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 09:12:51 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 09:13:18 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 09:13:18 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:13:18 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 09:13:18 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 09:13:33 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 09:13:33 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:13:33 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 09:13:33 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 09:14:09 - backend.main - INFO - <module>:13 - ==================================================
+2025-10-24 09:14:09 - backend.main - INFO - <module>:14 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:14:09 - backend.main - INFO - <module>:15 - ==================================================
+2025-10-24 09:14:09 - backend.main - INFO - <module>:31 - CORS configured for: http://localhost:5173
+2025-10-24 09:16:45 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 09:16:45 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:16:45 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 09:16:45 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 09:16:45 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 09:25:05 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 09:25:05 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:25:05 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 09:25:05 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 09:25:05 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 09:31:31 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 09:31:31 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:31:31 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 09:31:31 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 09:31:31 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:628 - Calling on_part_begin with no data
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:625 - Calling on_header_field with data[42:61]
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:625 - Calling on_header_value with data[63:149]
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:628 - Calling on_header_end with no data
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:625 - Calling on_header_field with data[151:163]
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:625 - Calling on_header_value with data[165:180]
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:628 - Calling on_header_end with no data
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:628 - Calling on_headers_finished with no data
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:625 - Calling on_part_data with data[184:196608]
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:625 - Calling on_part_data with data[0:104962]
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:628 - Calling on_part_end with no data
+2025-10-24 09:31:31 - python_multipart.multipart - DEBUG - callback:628 - Calling on_end with no data
+2025-10-24 09:31:31 - backend.api.routes.upload - INFO - upload_pdf:19 - PDF upload request - Filename: Ashkan Sheikhansari - Backend Software Engineer.pdf, Content-Type: application/pdf
+2025-10-24 09:31:31 - backend.api.routes.upload - DEBUG - upload_pdf:34 - File size: 0.29MB
+2025-10-24 09:31:31 - backend.services.pdf_service - INFO - extract_text_pdf:8 - Starting PDF text Extraction
+2025-10-24 09:31:31 - backend.services.pdf_service - ERROR - extract_text_pdf:36 - Error extracting text from PDF: PdfFileReader is deprecated and was removed in PyPDF2 3.0.0. Use PdfReader instead.
+Traceback (most recent call last):
+  File "F:\job_tracker\backend\services\pdf_service.py", line 15, in extract_text_pdf
+    pdf_reader = PdfFileReader(pdf_file)
+                 ^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\PyPDF2\_reader.py", line 1974, in __init__
+    deprecation_with_replacement("PdfFileReader", "PdfReader", "3.0.0")
+  File "F:\job_tracker\venv\Lib\site-packages\PyPDF2\_utils.py", line 369, in deprecation_with_replacement
+    deprecation(DEPR_MSG_HAPPENED.format(old_name, removed_in, new_name))
+  File "F:\job_tracker\venv\Lib\site-packages\PyPDF2\_utils.py", line 351, in deprecation
+    raise DeprecationError(msg)
+PyPDF2.errors.DeprecationError: PdfFileReader is deprecated and was removed in PyPDF2 3.0.0. Use PdfReader instead.
+2025-10-24 09:31:31 - backend.api.routes.upload - ERROR - upload_pdf:54 - PDF extraction failed: Failed to read PDF: PdfFileReader is deprecated and was removed in PyPDF2 3.0.0. Use PdfReader instead.
+2025-10-24 09:32:54 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 09:32:54 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 09:32:54 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 09:32:54 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 09:32:54 - backend.main - INFO - <module>:37 - API routes loaded
