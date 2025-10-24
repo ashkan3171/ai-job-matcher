@@ -315,3 +315,165 @@ PyPDF2.errors.DeprecationError: PdfFileReader is deprecated and was removed in P
 2025-10-24 15:59:17 - backend.services.matcher_service - DEBUG - calculate_job_match:49 - Skills breakdown - Matched: 28, Missing: 18, Extra: 36
 2025-10-24 15:59:17 - backend.main - INFO - legacy_endpoint:57 - Match calculated - Semantic: 76.12%, Skills: 60.87%
 2025-10-24 15:59:17 - backend.main - DEBUG - legacy_endpoint:58 - Matched skills: 28, Missing: 18
+2025-10-24 16:05:10 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:05:10 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:05:10 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:05:10 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:05:10 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:05:42 - backend.main - INFO - legacy_endpoint:52 - Legacy /cvjob-compare endpoint called
+2025-10-24 16:05:42 - backend.main - DEBUG - legacy_endpoint:53 - Request - Job text: 2070 chars, Resume: 4846 chars
+2025-10-24 16:05:42 - backend.services.matcher_service - INFO - calculate_job_match:15 - Starting job match calculation
+2025-10-24 16:05:42 - backend.services.matcher_service - DEBUG - calculate_job_match:16 - Input lengths - Job: 2070 chars, Resume: 4846 chars
+2025-10-24 16:05:42 - backend.services.matcher_service - DEBUG - calculate_job_match:20 - Encoding job description to embedding
+2025-10-24 16:05:43 - backend.services.matcher_service - DEBUG - calculate_job_match:23 - Encoding resume to embedding
+2025-10-24 16:05:43 - backend.services.matcher_service - DEBUG - calculate_job_match:26 - Calculating cosine similarity
+2025-10-24 16:05:43 - backend.services.matcher_service - INFO - calculate_job_match:30 - Semantic similarity calculated: 76.12%
+2025-10-24 16:05:43 - backend.services.matcher_service - DEBUG - calculate_job_match:33 - Starting skills comparison
+2025-10-24 16:05:43 - backend.services.ai_service - INFO - compare_skills:107 - Starting skills comparison
+2025-10-24 16:05:43 - backend.services.ai_service - INFO - extract_skills:21 - Extracting job skills from text (2070 chars)
+2025-10-24 16:05:43 - backend.services.ai_service - DEBUG - extract_skills:79 - Calling OpenAI API (model: gpt-o3-pro, temp: 0.3)
+2025-10-24 16:05:44 - backend.services.ai_service - ERROR - extract_skills:99 - OpenAI API error while extracting job skills: Error code: 400 - {'error': {'message': "The requested model 'gpt-o3-pro' does not exist.", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_found'}}
+Traceback (most recent call last):
+  File "F:\job_tracker\backend\services\ai_service.py", line 81, in extract_skills
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\resources\responses\responses.py", line 840, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "The requested model 'gpt-o3-pro' does not exist.", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_found'}}
+2025-10-24 16:05:44 - backend.services.ai_service - WARNING - extract_skills:100 - Returning empty skills list as fallback
+2025-10-24 16:05:44 - backend.services.ai_service - INFO - extract_skills:21 - Extracting resume skills from text (4846 chars)
+2025-10-24 16:05:44 - backend.services.ai_service - DEBUG - extract_skills:79 - Calling OpenAI API (model: gpt-o3-pro, temp: 0.3)
+2025-10-24 16:05:46 - backend.services.ai_service - ERROR - extract_skills:99 - OpenAI API error while extracting resume skills: Error code: 400 - {'error': {'message': "The requested model 'gpt-o3-pro' does not exist.", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_found'}}
+Traceback (most recent call last):
+  File "F:\job_tracker\backend\services\ai_service.py", line 81, in extract_skills
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\resources\responses\responses.py", line 840, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "The requested model 'gpt-o3-pro' does not exist.", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_found'}}
+2025-10-24 16:05:46 - backend.services.ai_service - WARNING - extract_skills:100 - Returning empty skills list as fallback
+2025-10-24 16:05:46 - backend.services.ai_service - INFO - compare_skills:116 - Comparison complete - Matched: 0, Missing: 0, Extra: 0
+2025-10-24 16:05:46 - backend.services.matcher_service - INFO - calculate_job_match:44 - Match calculation complete - Semantic: 76.12%, Skills: 0%
+2025-10-24 16:05:46 - backend.services.matcher_service - DEBUG - calculate_job_match:49 - Skills breakdown - Matched: 0, Missing: 0, Extra: 0
+2025-10-24 16:05:46 - backend.main - INFO - legacy_endpoint:57 - Match calculated - Semantic: 76.12%, Skills: 0%
+2025-10-24 16:05:46 - backend.main - DEBUG - legacy_endpoint:58 - Matched skills: 0, Missing: 0
+2025-10-24 16:11:18 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:11:18 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:11:18 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:11:18 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:11:18 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:11:18 - backend.main - INFO - legacy_endpoint:52 - Legacy /cvjob-compare endpoint called
+2025-10-24 16:11:18 - backend.main - DEBUG - legacy_endpoint:53 - Request - Job text: 2070 chars, Resume: 4846 chars
+2025-10-24 16:11:18 - backend.services.matcher_service - INFO - calculate_job_match:15 - Starting job match calculation
+2025-10-24 16:11:18 - backend.services.matcher_service - DEBUG - calculate_job_match:16 - Input lengths - Job: 2070 chars, Resume: 4846 chars
+2025-10-24 16:11:18 - backend.services.matcher_service - DEBUG - calculate_job_match:20 - Encoding job description to embedding
+2025-10-24 16:11:18 - backend.services.matcher_service - DEBUG - calculate_job_match:23 - Encoding resume to embedding
+2025-10-24 16:11:18 - backend.services.matcher_service - DEBUG - calculate_job_match:26 - Calculating cosine similarity
+2025-10-24 16:11:18 - backend.services.matcher_service - INFO - calculate_job_match:30 - Semantic similarity calculated: 76.12%
+2025-10-24 16:11:18 - backend.services.matcher_service - DEBUG - calculate_job_match:33 - Starting skills comparison
+2025-10-24 16:11:18 - backend.services.ai_service - INFO - compare_skills:107 - Starting skills comparison
+2025-10-24 16:11:18 - backend.services.ai_service - INFO - extract_skills:21 - Extracting job skills from text (2070 chars)
+2025-10-24 16:11:18 - backend.services.ai_service - DEBUG - extract_skills:79 - Calling OpenAI API (model: gpt-o3-mini, temp: 0.3)
+2025-10-24 16:11:19 - backend.services.ai_service - ERROR - extract_skills:99 - OpenAI API error while extracting job skills: Error code: 400 - {'error': {'message': "The requested model 'gpt-o3-mini' does not exist.", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_found'}}
+Traceback (most recent call last):
+  File "F:\job_tracker\backend\services\ai_service.py", line 81, in extract_skills
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\resources\responses\responses.py", line 840, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "The requested model 'gpt-o3-mini' does not exist.", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_found'}}
+2025-10-24 16:11:19 - backend.services.ai_service - WARNING - extract_skills:100 - Returning empty skills list as fallback
+2025-10-24 16:11:19 - backend.services.ai_service - INFO - extract_skills:21 - Extracting resume skills from text (4846 chars)
+2025-10-24 16:11:19 - backend.services.ai_service - DEBUG - extract_skills:79 - Calling OpenAI API (model: gpt-o3-mini, temp: 0.3)
+2025-10-24 16:11:20 - backend.services.ai_service - ERROR - extract_skills:99 - OpenAI API error while extracting resume skills: Error code: 400 - {'error': {'message': "The requested model 'gpt-o3-mini' does not exist.", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_found'}}
+Traceback (most recent call last):
+  File "F:\job_tracker\backend\services\ai_service.py", line 81, in extract_skills
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\resources\responses\responses.py", line 840, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "The requested model 'gpt-o3-mini' does not exist.", 'type': 'invalid_request_error', 'param': 'model', 'code': 'model_not_found'}}
+2025-10-24 16:11:20 - backend.services.ai_service - WARNING - extract_skills:100 - Returning empty skills list as fallback
+2025-10-24 16:11:20 - backend.services.ai_service - INFO - compare_skills:116 - Comparison complete - Matched: 0, Missing: 0, Extra: 0
+2025-10-24 16:11:20 - backend.services.matcher_service - INFO - calculate_job_match:44 - Match calculation complete - Semantic: 76.12%, Skills: 0%
+2025-10-24 16:11:20 - backend.services.matcher_service - DEBUG - calculate_job_match:49 - Skills breakdown - Matched: 0, Missing: 0, Extra: 0
+2025-10-24 16:11:20 - backend.main - INFO - legacy_endpoint:57 - Match calculated - Semantic: 76.12%, Skills: 0%
+2025-10-24 16:11:20 - backend.main - DEBUG - legacy_endpoint:58 - Matched skills: 0, Missing: 0
+2025-10-24 16:13:15 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:13:15 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:13:15 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:13:15 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:13:15 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:13:15 - backend.main - INFO - legacy_endpoint:52 - Legacy /cvjob-compare endpoint called
+2025-10-24 16:13:15 - backend.main - DEBUG - legacy_endpoint:53 - Request - Job text: 2070 chars, Resume: 4846 chars
+2025-10-24 16:13:15 - backend.services.matcher_service - INFO - calculate_job_match:15 - Starting job match calculation
+2025-10-24 16:13:15 - backend.services.matcher_service - DEBUG - calculate_job_match:16 - Input lengths - Job: 2070 chars, Resume: 4846 chars
+2025-10-24 16:13:15 - backend.services.matcher_service - DEBUG - calculate_job_match:20 - Encoding job description to embedding
+2025-10-24 16:13:15 - backend.services.matcher_service - DEBUG - calculate_job_match:23 - Encoding resume to embedding
+2025-10-24 16:13:15 - backend.services.matcher_service - DEBUG - calculate_job_match:26 - Calculating cosine similarity
+2025-10-24 16:13:15 - backend.services.matcher_service - INFO - calculate_job_match:30 - Semantic similarity calculated: 76.12%
+2025-10-24 16:13:15 - backend.services.matcher_service - DEBUG - calculate_job_match:33 - Starting skills comparison
+2025-10-24 16:13:15 - backend.services.ai_service - INFO - compare_skills:107 - Starting skills comparison
+2025-10-24 16:13:15 - backend.services.ai_service - INFO - extract_skills:21 - Extracting job skills from text (2070 chars)
+2025-10-24 16:13:15 - backend.services.ai_service - DEBUG - extract_skills:79 - Calling OpenAI API (model: o3-mini, temp: 0.3)
+2025-10-24 16:13:15 - backend.services.ai_service - ERROR - extract_skills:99 - OpenAI API error while extracting job skills: Error code: 400 - {'error': {'message': "Unsupported parameter: 'temperature' is not supported with this model.", 'type': 'invalid_request_error', 'param': 'temperature', 'code': None}}
+Traceback (most recent call last):
+  File "F:\job_tracker\backend\services\ai_service.py", line 81, in extract_skills
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\resources\responses\responses.py", line 840, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "Unsupported parameter: 'temperature' is not supported with this model.", 'type': 'invalid_request_error', 'param': 'temperature', 'code': None}}
+2025-10-24 16:13:15 - backend.services.ai_service - WARNING - extract_skills:100 - Returning empty skills list as fallback
+2025-10-24 16:13:15 - backend.services.ai_service - INFO - extract_skills:21 - Extracting resume skills from text (4846 chars)
+2025-10-24 16:13:15 - backend.services.ai_service - DEBUG - extract_skills:79 - Calling OpenAI API (model: o3-mini, temp: 0.3)
+2025-10-24 16:13:16 - backend.services.ai_service - ERROR - extract_skills:99 - OpenAI API error while extracting resume skills: Error code: 400 - {'error': {'message': "Unsupported parameter: 'temperature' is not supported with this model.", 'type': 'invalid_request_error', 'param': 'temperature', 'code': None}}
+Traceback (most recent call last):
+  File "F:\job_tracker\backend\services\ai_service.py", line 81, in extract_skills
+    response = client.responses.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\resources\responses\responses.py", line 840, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1259, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\job_tracker\venv\Lib\site-packages\openai\_base_client.py", line 1047, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "Unsupported parameter: 'temperature' is not supported with this model.", 'type': 'invalid_request_error', 'param': 'temperature', 'code': None}}
+2025-10-24 16:13:16 - backend.services.ai_service - WARNING - extract_skills:100 - Returning empty skills list as fallback
+2025-10-24 16:13:16 - backend.services.ai_service - INFO - compare_skills:116 - Comparison complete - Matched: 0, Missing: 0, Extra: 0
+2025-10-24 16:13:16 - backend.services.matcher_service - INFO - calculate_job_match:44 - Match calculation complete - Semantic: 76.12%, Skills: 0%
+2025-10-24 16:13:16 - backend.services.matcher_service - DEBUG - calculate_job_match:49 - Skills breakdown - Matched: 0, Missing: 0, Extra: 0
+2025-10-24 16:13:16 - backend.main - INFO - legacy_endpoint:57 - Match calculated - Semantic: 76.12%, Skills: 0%
+2025-10-24 16:13:16 - backend.main - DEBUG - legacy_endpoint:58 - Matched skills: 0, Missing: 0

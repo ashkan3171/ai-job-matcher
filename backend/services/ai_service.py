@@ -76,10 +76,10 @@ Return a comprehensive comma-separated list of ALL extracted skills. Be thorough
 SKILLS:"""
     
     try:
-        logger.debug(f"Calling OpenAI API (model: gpt-o3-pro, temp: 0.3)")
+        logger.debug(f"Calling OpenAI API (model: gpt-4o-mini, temp: 0.3)")
         
         response = client.responses.create(
-            model="gpt-o3-pro",
+            model="gpt-4o-mini",
             instructions="You are a technical recruiter expert at identifying skills from job descriptions and resumes.",
             input=prompt,
             max_output_tokens=500,
