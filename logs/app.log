@@ -477,3 +477,13 @@ openai.BadRequestError: Error code: 400 - {'error': {'message': "Unsupported par
 2025-10-24 16:13:16 - backend.services.matcher_service - DEBUG - calculate_job_match:49 - Skills breakdown - Matched: 0, Missing: 0, Extra: 0
 2025-10-24 16:13:16 - backend.main - INFO - legacy_endpoint:57 - Match calculated - Semantic: 76.12%, Skills: 0%
 2025-10-24 16:13:16 - backend.main - DEBUG - legacy_endpoint:58 - Matched skills: 0, Missing: 0
+2025-10-24 16:27:11 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:27:11 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:27:11 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:27:11 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:27:11 - backend.main - INFO - <module>:37 - API routes loaded
+2025-10-24 16:34:50 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-24 16:34:50 - backend.main - INFO - <module>:15 - Starting Job Match Analyzer API v1.0.0
+2025-10-24 16:34:50 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-24 16:34:50 - backend.main - INFO - <module>:32 - CORS configured for: http://localhost:5173
+2025-10-24 16:34:50 - backend.main - INFO - <module>:37 - API routes loaded

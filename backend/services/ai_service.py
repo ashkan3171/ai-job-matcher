@@ -1,6 +1,7 @@
 from openai import OpenAI
 from backend.core.config import settings
 import logging
+from rapidfuzz import fuzz
 
 logger = logging.getLogger(__name__)
 
@@ -110,6 +111,44 @@ def compare_skills(job_text: str, resume_text: str) -> dict:
     resume_skills = set(extract_skills(resume_text, context="resume"))
     
     matched_skills = resume_skills.intersection(job_skills)
+
+    # Fuzzy matches
+    fuzzy_matched_resume = set()
+    fuzzy_matched_job = set()
+    
+    # For each job skill, find best match in resume skills
+    for job_skill in job_skills:
+        if job_skill in matched_skills:
+            continue  # Already matched exactly
+        
+        best_match = None
+        best_score = 0
+        
+        for resume_skill in matched_skills:
+            if resume_skill in matched_skills or resume_skill in fuzzy_matched_resume:
+                continue  # Already matched
+            
+            # Calculate similarity
+            score = fuzz.ratio(job_skill, resume_skill)
+            
+            # Also check if one contains the other (substring match)
+            if job_skill in resume_skill or resume_skill in job_skill:
+                score = max(score, 85)  # Boost score for substring matches
+            
+            if score > best_score:
+                best_score = score
+                best_match = resume_skill
+        
+        # Accept matches above 80% similarity
+        if best_score >= 80:
+            fuzzy_matched_resume.add(best_match)
+            fuzzy_matched_job.add(job_skill)
+            logger.debug(f"Fuzzy match: '{job_skill}' ≈ '{best_match}' (score: {best_score})")
+    
+    # Combine exact and fuzzy matches
+    all_matched = matched_skills.union(fuzzy_matched_job)
+    matched_job_count = len(all_matched)
+
     missing_skills = job_skills - resume_skills
     extra_skills = resume_skills - job_skills
     
