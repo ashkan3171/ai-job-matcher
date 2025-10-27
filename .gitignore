@@ -1,15 +1,43 @@
-# Virtual environment
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
 venv/
 env/
+*.egg-info/
+.pytest_cache/
 
 # Environment variables
 .env
+*.env
+!.env.example
 
-# IDE
+# Logs
+logs/
+*.log
+
+# IDEs
 .vscode/
 .idea/
 *.swp
+*.swo
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Node/Frontend
+node_modules/
+dist/
+build/
+.vite/
+
+# Models (large files)
+backend/models/*.bin
+backend/models/*.pt
+
+# Temporary files
+*.tmp
+*.bak

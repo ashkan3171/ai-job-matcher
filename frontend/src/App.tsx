@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+// Get API URL from environment variable or default to localhost
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 function App() {
   const [jobText, setJobText] = useState("");
   const [resumeText, setResumeText] = useState("");
@@ -30,7 +33,7 @@ function App() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:8000/api/upload-pdf', {
+      const response = await fetch(`${API_URL}/api/upload-pdf`, {
         method: 'POST',
         body: formData,
       });
@@ -56,21 +59,21 @@ function App() {
     }
   };
 
-  //Function to call  backend
+  // Function to call backend
   const handleCalculate = async () => { 
     if (!jobText.trim() || !resumeText.trim()) {
       alert("Please fill in both fields!");
       return;
     }
 
-    setLoading(true)
-    setResult(null)
+    setLoading(true);
+    setResult(null);
 
     try {
       // Call FastAPI backend
-      console.log("Calling backend..."); 
+      console.log("Calling backend at:", API_URL); 
 
-      const response = await fetch("http://localhost:8000/cvjob-compare", {
+      const response = await fetch(`${API_URL}/cvjob-compare`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +84,7 @@ function App() {
         }),
       });
 
-      console.log("Response status:", response.status); // NEW
+      console.log("Response status:", response.status);
 
       const data = await response.json();
       console.log("Response data:", data);
@@ -89,7 +92,7 @@ function App() {
       setResult(data); // Store the result
     } catch (error) {
       alert("Error connecting to backend. Make sure it's running!");
-      console.error("Error details:", error)
+      console.error("Error details:", error);
     } finally {
       setLoading(false); // Hide loading state
     }
@@ -160,7 +163,7 @@ function App() {
           </button>
         </div>
 
-        {/* NEW: Results Section */}
+        {/* Results Section */}
         {result && (
           <div className="bg-white rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Results</h2>
@@ -230,4 +233,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
