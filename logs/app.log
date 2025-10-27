@@ -753,3 +753,8 @@ openai.BadRequestError: Error code: 400 - {'error': {'message': "Unsupported par
 2025-10-27 16:06:32 - backend.main - INFO - <module>:16 - ==================================================
 2025-10-27 16:06:32 - backend.main - INFO - <module>:38 - CORS configured for: http://localhost:5173
 2025-10-27 16:06:32 - backend.main - INFO - <module>:43 - API routes loaded
+2025-10-27 16:06:41 - backend.main - INFO - <module>:14 - ==================================================
+2025-10-27 16:06:41 - backend.main - INFO - <module>:15 - Starting Job Matcher API v1.0.0
+2025-10-27 16:06:41 - backend.main - INFO - <module>:16 - ==================================================
+2025-10-27 16:06:41 - backend.main - INFO - <module>:38 - CORS configured for: http://localhost:5173
+2025-10-27 16:06:41 - backend.main - INFO - <module>:43 - API routes loaded
