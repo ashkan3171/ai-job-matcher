@@ -1,226 +1,201 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import './App.css'
 
-// Get API URL from environment variable or default to localhost
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+// Define the type for the API response
+interface MatchResult {
+  similarity_score: number;
+  matched_skill_percentage: number;
+  matched_skills: string[];
+  missing_skills: string[];
+  extra_skills: string[];
+  Status?: string;
+}
 
 function App() {
-  const [jobText, setJobText] = useState("");
-  const [resumeText, setResumeText] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState(null);
-  const [uploadingPDF, setUploadingPDF] = useState(false); 
+  const [jobText, setJobText] = useState('')
+  const [resumeText, setResumeText] = useState('')
+  const [matchResult, setMatchResult] = useState<MatchResult | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  // Handle PDF upload
-  const handlePDFUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
-    // Validate file type
-    if (file.type !== 'application/pdf') {
-      alert('Please upload a PDF file');
-      return;
-    }
-
-    // Validate file size (10MB max)
-    if (file.size > 10 * 1024 * 1024) {
-      alert('File size must be less than 10MB');
-      return;
-    }
-
-    setUploadingPDF(true);
-
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-      const response = await fetch(`${API_URL}/api/upload-pdf`, {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Upload failed');
-      }
-
-      const data = await response.json();
-
-      // Fill the resume textarea with extracted text
-      setResumeText(data.text);
-      
-      alert(`✅ PDF uploaded successfully!\n${data.page_count} page(s), ${data.char_count} characters extracted.`);
-
-    } catch (error) {
-      console.error('PDF upload error:', error);
-      alert('❌ Failed to upload PDF. Please try again or paste text manually.');
-    } finally {
-      setUploadingPDF(false);
-      // Reset file input
-      event.target.value = '';
-    }
-  };
-
-  // Function to call backend
-  const handleCalculate = async () => { 
+  const analyzeMatch = async () => {
     if (!jobText.trim() || !resumeText.trim()) {
-      alert("Please fill in both fields!");
-      return;
+      setError('Please enter both job description and resume')
+      return
     }
 
-    setLoading(true);
-    setResult(null);
+    setLoading(true)
+    setError(null)
+    setMatchResult(null)
 
     try {
-      // Call FastAPI backend
-      console.log("Calling backend at:", API_URL); 
-
       const response = await fetch(`${API_URL}/cvjob-compare`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           job_text: jobText,
           resume_text: resumeText,
         }),
-      });
+      })
 
-      console.log("Response status:", response.status);
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`)
+      }
 
-      const data = await response.json();
-      console.log("Response data:", data);
-
-      setResult(data); // Store the result
-    } catch (error) {
-      alert("Error connecting to backend. Make sure it's running!");
-      console.error("Error details:", error);
+      const data: MatchResult = await response.json()
+      setMatchResult(data)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to analyze match')
+      console.error('Error:', err)
     } finally {
-      setLoading(false); // Hide loading state
+      setLoading(false)
     }
-  };
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
-      {/* Header */}
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-2">
-          Job Match Analyzer
-        </h1>
-        <p className="text-center text-gray-600 mb-8">
-          Analyze how well your resume matches a job description
-        </p>
-        {/* Input Form */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-          {/* Job Description */}
-          <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            AI Job Match Analyzer
+          </h1>
+          <p className="text-lg text-gray-600">
+            Find out how well your resume matches the job description
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Job Description Input */}
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Job Description
             </label>
             <textarea
-              className="w-full h-40 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full h-64 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
               placeholder="Paste the job description here..."
               value={jobText}
               onChange={(e) => setJobText(e.target.value)}
             />
           </div>
-          {/* Resume */}
-          <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">
+
+          {/* Resume Input */}
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Your Resume
             </label>
-            {/* PDF Upload Button */}
-            <div className="mb-3">
-              <label className="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg cursor-pointer transition duration-200">
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                </svg>
-                {uploadingPDF ? 'Uploading...' : 'Upload PDF Resume'}
-                <input
-                  type="file"
-                  className="hidden"
-                  accept=".pdf"
-                  onChange={handlePDFUpload}
-                  disabled={uploadingPDF}
-                />
-              </label>
-              <span className="ml-3 text-sm text-gray-500">or paste text below</span>
-            </div>
-
-            {/* Resume Textarea */}
             <textarea
-              className="w-full h-40 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Paste your resume here or upload PDF above..."
+              className="w-full h-64 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              placeholder="Paste your resume here..."
               value={resumeText}
               onChange={(e) => setResumeText(e.target.value)}
             />
           </div>
-          {/* Button */}
-          <button 
-            onClick={handleCalculate}
+        </div>
+
+        {/* Analyze Button */}
+        <div className="text-center mb-8">
+          <button
+            onClick={analyzeMatch}
             disabled={loading}
-            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className={`px-8 py-4 rounded-lg text-white font-semibold text-lg transition-all ${
+              loading
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-blue-600 hover:bg-blue-700 hover:shadow-xl transform hover:-translate-y-1'
+            }`}
           >
-            {loading ? "Calculating..." : "Calculate Match"}
+            {loading ? 'Analyzing...' : 'Analyze Match'}
           </button>
         </div>
 
-        {/* Results Section */}
-        {result && (
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Results</h2>
-            
-            {/* Scores */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <p className="text-sm text-gray-600 mb-1">Semantic Match</p>
-                <p className="text-3xl font-bold text-blue-600">
-                  {result.similarity_score}%
-                </p>
+        {/* Error Message */}
+        {error && (
+          <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-8 rounded">
+            <p className="text-red-700">{error}</p>
+          </div>
+        )}
+
+        {/* Results */}
+        {matchResult && (
+          <div className="bg-white rounded-lg shadow-xl p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+              Match Analysis Results
+            </h2>
+
+            {/* Score Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              {/* Semantic Similarity */}
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+                <h3 className="text-lg font-semibold mb-2">Semantic Similarity</h3>
+                <div className="text-5xl font-bold">
+                  {matchResult.similarity_score}%
+                </div>
+                <p className="text-blue-100 mt-2">Overall content match</p>
               </div>
-              <div className="bg-green-50 p-4 rounded-lg">
-                <p className="text-sm text-gray-600 mb-1">Skills Match</p>
-                <p className="text-3xl font-bold text-green-600">
-                  {result.matched_skill_percentage}%
-                </p>
+
+              {/* Skills Match */}
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+                <h3 className="text-lg font-semibold mb-2">Skills Match</h3>
+                <div className="text-5xl font-bold">
+                  {matchResult.matched_skill_percentage}%
+                </div>
+                <p className="text-green-100 mt-2">Required skills you have</p>
               </div>
             </div>
 
             {/* Matched Skills */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                ✅ Matched Skills ({result.matched_skills.length})
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {result.matched_skills.map((skill, index) => (
-                  <span key={index} className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Missing Skills */}
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                ❌ Missing Skills ({result.missing_skills.length})
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {result.missing_skills.map((skill, index) => (
-                  <span key={index} className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Extra Skills */}
-            {result.extra_skills.length > 0 && (
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                  ➕ Bonus Skills ({result.extra_skills.length})
+            {matchResult.matched_skills && matchResult.matched_skills.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  ✅ Skills You Have ({matchResult.matched_skills.length})
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {result.extra_skills.map((skill, index) => (
-                    <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                  {matchResult.matched_skills.map((skill: string, index: number) => (
+                    <span
+                      key={index}
+                      className="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Missing Skills */}
+            {matchResult.missing_skills && matchResult.missing_skills.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  ⚠️ Skills You're Missing ({matchResult.missing_skills.length})
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {matchResult.missing_skills.map((skill: string, index: number) => (
+                    <span
+                      key={index}
+                      className="px-4 py-2 bg-red-100 text-red-800 rounded-full text-sm font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Extra Skills */}
+            {matchResult.extra_skills && matchResult.extra_skills.length > 0 && (
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  💡 Bonus Skills You Have ({matchResult.extra_skills.length})
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {matchResult.extra_skills.map((skill: string, index: number) => (
+                    <span
+                      key={index}
+                      className="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
+                    >
                       {skill}
                     </span>
                   ))}
@@ -231,7 +206,7 @@ function App() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
