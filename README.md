@@ -331,7 +331,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 📧 Contact
 
-Questions or suggestions? Open an issue or reach out at: your.email@example.com
+Questions or suggestions? Open an issue or reach out at: ashkansheikhansari@outlook.com
 
 ---
 
