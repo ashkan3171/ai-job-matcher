@@ -318,8 +318,8 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Ashkan Sheikhansari**
 
-- GitHub: [@yourusername](https://github.com/ashkan3171)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/ashkan-sheikhansari/)
+- GitHub: [Github](https://github.com/ashkan3171)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/ashkan-sheikhansari/)
 
 ## 🙏 Acknowledgments
 
