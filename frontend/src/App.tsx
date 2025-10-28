@@ -1,6 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 import { useState } from 'react'
 import './App.css'
 
+/* Your custom styles below */
 // Define the type for the API response
 interface MatchResult {
   similarity_score: number;
