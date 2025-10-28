@@ -25,11 +25,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",  # Local dev
-        "http://localhost",       # Docker local
-        "http://localhost:3000",  # Alternative port
-        "https://job-match-analyzer-abc123.vercel.app",  # Vercel URL
-        "https://*.vercel.app",   # All Vercel preview URLs
+        "http://localhost:5173",
+        "https://ai-job-matcher-chi.vercel.app",  # ADD YOUR ACTUAL VERCEL URL
+        "https://*.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
