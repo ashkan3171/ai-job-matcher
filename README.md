@@ -78,9 +78,9 @@ Job Match Analyzer helps job seekers optimize their applications by providing:
 
 ## 🚀 Live Demo
 
-- **Frontend:** [Coming Soon]
-- **Backend API:** [Coming Soon]
-- **API Docs:** [Coming Soon]/docs
+- **Frontend:** [ai-job-matcher-chi.vercel.app]
+- **Backend API:** [ai-job-matcher-production.up.railway.app]
+- **API Docs:** [ai-job-matcher-production.up.railway.app]/docs
 
 ## 📦 Installation
 
