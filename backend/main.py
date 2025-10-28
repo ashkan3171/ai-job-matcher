@@ -26,7 +26,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
-        "https://ai-job-matcher-chi.vercel.app",  # ADD YOUR ACTUAL VERCEL URL
+        "https://ai-job-matcher-chi.vercel.app",
         "https://*.vercel.app",
     ],
     allow_credentials=True,
