@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 import { useState } from 'react'
 import './App.css'
 
