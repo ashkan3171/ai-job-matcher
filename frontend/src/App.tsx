@@ -17,41 +17,36 @@ function App() {
   const [matchResult, setMatchResult] = useState<MatchResult | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  // NEW: Upload states
-  const [uploadingJob, setUploadingJob] = useState(false)
   const [uploadingResume, setUploadingResume] = useState(false)
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
-  // NEW: Handle file upload
-  const handleFileUpload = async (
-    file: File,
-    setTextFn: (text: string) => void,
-    setLoadingFn: (loading: boolean) => void
-  ) => {
-    setLoadingFn(true)
+  // Handle PDF upload
+  const handlePdfUpload = async (file: File) => {
+    setUploadingResume(true)
     setError(null)
 
     try {
       const formData = new FormData()
       formData.append('file', file)
 
-      const response = await fetch(`${API_URL}/api/extract-text`, {
+      const response = await fetch(`${API_URL}/api/upload-pdf`, {
         method: 'POST',
         body: formData,
       })
 
       if (!response.ok) {
-        throw new Error('Failed to extract text from file')
+        const errorData = await response.json()
+        throw new Error(errorData.detail || 'Failed to upload PDF')
       }
 
       const data = await response.json()
-      setTextFn(data.text)
+      setResumeText(data.text)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to process file')
-      console.error('File upload error:', err)
+      setError(err instanceof Error ? err.message : 'Failed to process PDF')
+      console.error('PDF upload error:', err)
     } finally {
-      setLoadingFn(false)
+      setUploadingResume(false)
     }
   }
 
@@ -99,51 +94,26 @@ function App() {
             AI Job Match Analyzer
           </h1>
           <p className="text-lg text-gray-600">
-            Upload your files or paste text to analyze the match
+            Upload your resume or paste text to analyze the match
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {/* Job Description Input */}
           <div className="bg-white rounded-lg shadow-lg p-6">
-            {/* NEW: Header with upload button */}
-            <div className="flex items-center justify-between mb-2">
-              <label className="block text-sm font-medium text-gray-700">
-                Job Description
-              </label>
-              <label className="cursor-pointer">
-                <input
-                  type="file"
-                  accept=".pdf,.docx,.doc,.txt"
-                  className="hidden"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0]
-                    if (file) {
-                      handleFileUpload(file, setJobText, setUploadingJob)
-                    }
-                  }}
-                />
-                <span className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-                  {uploadingJob ? 'Uploading...' : '📎 Upload File'}
-                </span>
-              </label>
-            </div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Job Description
+            </label>
             <textarea
               className="w-full h-64 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-              placeholder="Paste the job description here or upload a file..."
+              placeholder="Paste the job description here..."
               value={jobText}
               onChange={(e) => setJobText(e.target.value)}
-              disabled={uploadingJob}
             />
-            {/* NEW: Processing indicator */}
-            {uploadingJob && (
-              <p className="text-sm text-gray-500 mt-2">Processing file...</p>
-            )}
           </div>
 
           {/* Resume Input */}
           <div className="bg-white rounded-lg shadow-lg p-6">
-            {/* NEW: Header with upload button */}
             <div className="flex items-center justify-between mb-2">
               <label className="block text-sm font-medium text-gray-700">
                 Your Resume
@@ -151,30 +121,30 @@ function App() {
               <label className="cursor-pointer">
                 <input
                   type="file"
-                  accept=".pdf,.docx,.doc,.txt"
+                  accept=".pdf"
                   className="hidden"
                   onChange={(e) => {
                     const file = e.target.files?.[0]
                     if (file) {
-                      handleFileUpload(file, setResumeText, setUploadingResume)
+                      handlePdfUpload(file)
                     }
                   }}
+                  disabled={uploadingResume}
                 />
                 <span className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-                  {uploadingResume ? 'Uploading...' : '📎 Upload File'}
+                  {uploadingResume ? 'Uploading...' : '📎 Upload PDF'}
                 </span>
               </label>
             </div>
             <textarea
               className="w-full h-64 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-              placeholder="Paste your resume here or upload a file..."
+              placeholder="Paste your resume here or upload a PDF..."
               value={resumeText}
               onChange={(e) => setResumeText(e.target.value)}
               disabled={uploadingResume}
             />
-            {/* NEW: Processing indicator */}
             {uploadingResume && (
-              <p className="text-sm text-gray-500 mt-2">Processing file...</p>
+              <p className="text-sm text-gray-500 mt-2">Processing PDF...</p>
             )}
           </div>
         </div>
@@ -183,9 +153,9 @@ function App() {
         <div className="text-center mb-8">
           <button
             onClick={analyzeMatch}
-            disabled={loading || uploadingJob || uploadingResume}
+            disabled={loading || uploadingResume}
             className={`px-8 py-4 rounded-lg text-white font-semibold text-lg transition-all ${
-              loading || uploadingJob || uploadingResume
+              loading || uploadingResume
                 ? 'bg-gray-400 cursor-not-allowed'
                 : 'bg-blue-600 hover:bg-blue-700 hover:shadow-xl transform hover:-translate-y-1'
             }`}
